@@ -1,0 +1,12 @@
+.idea/
+
+*bin/
+
+*obj/
+
+*Debug/*
+
+*/.DS_Store
+
+ObligatorioDA2.sln.DotSettings.user
+
