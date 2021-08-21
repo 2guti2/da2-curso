@@ -29,7 +29,7 @@ namespace ObligatorioDA2.HttpApi
         {
 
             services.AddControllers();
-            
+
             services.AddDbContext<Context>(
                 o => o.UseSqlServer(Configuration.GetConnectionString("Default"))
             );
@@ -37,7 +37,7 @@ namespace ObligatorioDA2.HttpApi
             // services.AddDbContext<Context>(
             //     o => o.UseInMemoryDatabase("ObligatorioDA2")
             // );
-            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ObligatorioDA2.HttpApi", Version = "v1" });

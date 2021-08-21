@@ -9,7 +9,7 @@ namespace ObligatorioDA2.Domain
         private static readonly string[] Summaries = {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
-        
+
         public static List<WeatherForecast> NewWeek()
         {
             var rng = new Random();
