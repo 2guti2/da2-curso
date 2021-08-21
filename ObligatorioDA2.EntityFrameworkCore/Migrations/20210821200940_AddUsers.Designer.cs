@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ObligatorioDA2.EntityFrameworkCore;
 
 namespace ObligatorioDA2.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20210821200940_AddUsers")]
+    partial class AddUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,28 +52,9 @@ namespace ObligatorioDA2.EntityFrameworkCore.Migrations
                     b.Property<int>("TemperatureC")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("WeatherForecasts");
-                });
-
-            modelBuilder.Entity("ObligatorioDA2.EntityFrameworkCore.WeatherForecast", b =>
-                {
-                    b.HasOne("ObligatorioDA2.EntityFrameworkCore.User", "User")
-                        .WithMany("Forecasts")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ObligatorioDA2.EntityFrameworkCore.User", b =>
-                {
-                    b.Navigation("Forecasts");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,31 @@
+name: .NET Core build, run tests and linter
+
+on: [push]
+
+jobs:
+  run:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 5.0.x
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Add dotnet-format problem matcher
+        uses: xt0rted/dotnet-format-problem-matcher@v1
+      - name: Install dotnet format
+        run: dotnet tool update --global dotnet-format
+      - name: Run dotnet format
+        run: dotnet format --check --verbosity diagnostic
+
+      - name: Test
+        run: dotnet test --no-restore
