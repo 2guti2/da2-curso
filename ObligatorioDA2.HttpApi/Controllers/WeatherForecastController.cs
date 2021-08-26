@@ -34,13 +34,6 @@ namespace ObligatorioDA2.HttpApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]WeatherForecastInputDto forecast)
         {
-            /*
-            try {
-                //var user = _forecastService.Create(UserModel.ToEntity(model));
-                return Ok();
-            } catch(ArgumentException e) {
-                return BadRequest(e.Message);
-            }*/
             _forecastService.Create(forecast);
             return Ok();
         }
