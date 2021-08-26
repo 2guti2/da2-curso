@@ -26,19 +26,20 @@ namespace ObligatorioDA2.HttpApi.Controllers
         public IActionResult Get(int id)
         {
             var forecast = _forecastService.Get(id);
-            if (forecast == null) {
+            if (forecast == null)
+            {
                 return NotFound();
             }
             return Ok(forecast);
         }
         [HttpPost]
-        public IActionResult Post([FromBody]WeatherForecastInputDto forecast)
+        public IActionResult Post([FromBody] WeatherForecastInputDto forecast)
         {
             _forecastService.Create(forecast);
             return Ok();
         }
         [HttpPut]
-        public IActionResult Put([FromBody]WeatherForecastInputDto forecast)
+        public IActionResult Put([FromBody] WeatherForecastInputDto forecast)
         {
             _forecastService.Update(forecast);
             return Ok();

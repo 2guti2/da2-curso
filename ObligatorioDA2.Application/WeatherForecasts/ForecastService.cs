@@ -30,17 +30,20 @@ namespace ObligatorioDA2.Application.WeatherForecasts
 
             return Mapper.ToDto(_context.WeatherForecasts.FirstOrDefault(w => w.Id == id));
         }
-        
-        public void Create(WeatherForecastInputDto forecast){
+
+        public void Create(WeatherForecastInputDto forecast)
+        {
             _context.Add(Mapper.ToModel(forecast));
             _context.SaveChanges();
         }
 
-        public void Update(WeatherForecastInputDto forecast){
+        public void Update(WeatherForecastInputDto forecast)
+        {
             _context.Update(Mapper.ToModel(forecast));
             _context.SaveChanges();
         }
-        public void Delete(int id){
+        public void Delete(int id)
+        {
             _context.Remove(_context.WeatherForecasts.FirstOrDefault(w => w.Id == id));
             _context.SaveChanges();
         }
