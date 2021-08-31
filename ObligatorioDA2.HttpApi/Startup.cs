@@ -1,17 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ObligatorioDA2.Application.Interface;
+using ObligatorioDA2.Application.WeatherForecasts;
+using ObligatorioDA2.Domain;
 using ObligatorioDA2.EntityFrameworkCore;
+using ObligatorioDA2.Repositories;
+using ObligatorioDA2.Repositories.Interface;
 
 namespace ObligatorioDA2.HttpApi
 {
@@ -37,6 +36,9 @@ namespace ObligatorioDA2.HttpApi
             // services.AddDbContext<Context>(
             //     o => o.UseInMemoryDatabase("ObligatorioDA2")
             // );
+
+            services.AddScoped<IService<WeatherForecast>, ForecastService>();
+            services.AddScoped<IRepository<WeatherForecast>, WeatherForecastRepository>();
 
             services.AddSwaggerGen(c =>
             {

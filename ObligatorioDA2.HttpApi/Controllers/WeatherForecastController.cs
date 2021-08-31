@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using ObligatorioDA2.Application.WeatherForecasts;
+using ObligatorioDA2.Application.Interface;
 using ObligatorioDA2.Application.WeatherForecasts.Dtos;
-using ObligatorioDA2.EntityFrameworkCore;
+using ObligatorioDA2.Domain;
 
 namespace ObligatorioDA2.HttpApi.Controllers
 {
@@ -10,17 +12,17 @@ namespace ObligatorioDA2.HttpApi.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly ForecastService _forecastService;
+        private readonly IService<WeatherForecast> _forecastService;
 
-        public WeatherForecastController(Context context)
+        public WeatherForecastController(IService<WeatherForecast> service) : base()
         {
-            _forecastService = new ForecastService(context);
+            this._forecastService = service;
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecastOutputDto> Get()
         {
-            return _forecastService.GetAll();
+            return _forecastService.GetAll().Select(Mapper.ToDto);
         }
         [HttpGet("{id}")]
         public IActionResult Get(int id)
@@ -35,42 +37,35 @@ namespace ObligatorioDA2.HttpApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] WeatherForecastInputDto forecast)
         {
-            _forecastService.Create(forecast);
+            try
+            {
+                _forecastService.Create(Mapper.ToModel(forecast));
+            } catch(ArgumentException e) {
+                return BadRequest(e.Message);
+            }
             return Ok();
         }
-        [HttpPut]
-        public IActionResult Put([FromBody] WeatherForecastInputDto forecast)
+        [HttpPut("{id}")]
+        public IActionResult Put([FromBody] WeatherForecastInputDto forecast,int id)
         {
-            _forecastService.Update(forecast);
+            try { 
+            _forecastService.Update(id, Mapper.ToModel(forecast));
+        } catch(ArgumentException e) {
+                return BadRequest(e.Message);
+        }
             return Ok();
         }
-        [HttpDelete]
-        public IActionResult Put(int forecastId)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int forecastId)
         {
-            _forecastService.Delete(forecastId);
+            try
+            {
+                _forecastService.Delete(forecastId);
+            } catch(ArgumentException e) {
+                return NotFound(e.Message);
+            }
             return Ok();
         }
     }
 }
-/*
-        [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
-        {
-            var user = users.Get(id);
-            if (user == null) {
-                return NotFound();
-            }
-            return Ok(UserModel.ToModel(user));
-        }
 
-        [HttpPost]
-        public IActionResult Post([FromBody]UserModel model)
-        {
-            try {
-                var user = users.Create(UserModel.ToEntity(model));
-                return CreatedAtRoute("Get", new { id = user.Id }, UserModel.ToModel(user));
-            } catch(ArgumentException e) {
-                return BadRequest(e.Message);
-            }
-        }
-*/

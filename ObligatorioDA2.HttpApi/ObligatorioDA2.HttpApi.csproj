@@ -11,6 +11,15 @@
   <ItemGroup>
     <ProjectReference Include="..\ObligatorioDA2.Application\ObligatorioDA2.Application.csproj" />
     <ProjectReference Include="..\ObligatorioDA2.EntityFrameworkCore\ObligatorioDA2.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\ObligatorioDA2.Application.Interface\ObligatorioDA2.Application.Interface.csproj" />
+    <ProjectReference Include="..\ObligatorioDA2.Repositories\ObligatorioDA2.Repositories.csproj" />
+    <ProjectReference Include="..\ObligatorioDA2.Repositories.Interface\ObligatorioDA2.Repositories.Interface.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Controllers\Dtos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\Dtos\" />
+  </ItemGroup>
 </Project>

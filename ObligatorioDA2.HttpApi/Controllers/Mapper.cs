@@ -1,7 +1,7 @@
 using ObligatorioDA2.Application.WeatherForecasts.Dtos;
 using ObligatorioDA2.Domain;
 
-namespace ObligatorioDA2.Application
+namespace ObligatorioDA2.HttpApi.Controllers
 {
     public static class Mapper
     {
