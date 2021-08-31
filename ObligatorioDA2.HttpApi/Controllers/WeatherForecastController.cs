@@ -17,13 +17,13 @@ namespace ObligatorioDA2.HttpApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecastOutputDto> ReadAll()
+        public ActionResult<IEnumerable<WeatherForecastOutputDto>> ReadAll()
         {
-            return _forecastService.ReadAll();
+            return Ok(_forecastService.ReadAll());
         }
         
         [HttpGet("{id:int}")]
-        public IActionResult Read(int id)
+        public ActionResult<WeatherForecastOutputDto> Read(int id)
         {
             WeatherForecastOutputDto forecast = _forecastService.Read(id);
             if (forecast == null)
@@ -34,21 +34,21 @@ namespace ObligatorioDA2.HttpApi.Controllers
         }
         
         [HttpPost]
-        public IActionResult Create([FromBody] WeatherForecastInputDto forecast)
+        public ActionResult<WeatherForecastOutputDto> Create([FromBody] WeatherForecastInputDto forecast)
         {
             WeatherForecastOutputDto createdForecast = _forecastService.Create(forecast);
             return Ok(createdForecast);
         }
         
         [HttpPut]
-        public IActionResult Update([FromBody] WeatherForecastInputDto forecast)
+        public ActionResult<WeatherForecastOutputDto> Update([FromBody] WeatherForecastInputDto forecast)
         {
             WeatherForecastOutputDto updatedForecast = _forecastService.Update(forecast);
             return Ok(updatedForecast);
         }
         
         [HttpDelete]
-        public IActionResult Delete(int forecastId)
+        public ActionResult Delete(int forecastId)
         {
             _forecastService.Delete(forecastId);
             return Ok();

@@ -24,7 +24,7 @@ namespace ObligatorioDA2.Application.WeatherForecasts
             {
                 forecasts.AddRange(_context.WeatherForecasts);
             }
-            
+
             return forecasts.Select(Mapper.ToDto);
         }
         
