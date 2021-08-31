@@ -13,7 +13,7 @@ namespace ObligatorioDA2.Application.WeatherForecasts.Dtos
         public int TemperatureF { get; set; }
 
         public string Summary { get; set; }
-        
+
         public string User { get; set; }
     }
 }

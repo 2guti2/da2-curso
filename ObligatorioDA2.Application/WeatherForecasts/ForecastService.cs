@@ -27,7 +27,7 @@ namespace ObligatorioDA2.Application.WeatherForecasts
 
             return forecasts.Select(Mapper.ToDto);
         }
-        
+
         public WeatherForecastOutputDto Read(int id)
         {
             return Mapper.ToDto(_context.WeatherForecasts.FirstOrDefault(w => w.Id == id));
@@ -48,7 +48,7 @@ namespace ObligatorioDA2.Application.WeatherForecasts
             _context.SaveChanges();
             return Mapper.ToDto(forecast);
         }
-        
+
         public void Delete(int id)
         {
             WeatherForecast forecast = _context.WeatherForecasts.FirstOrDefault(w => w.Id == id);
