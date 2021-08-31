@@ -1,51 +1,60 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using ObligatorioDA2.Application.WeatherForecasts.Dtos;
+﻿using System;
+using System.Collections.Generic;
+using ObligatorioDA2.Application.Interface;
 using ObligatorioDA2.Domain;
-using ObligatorioDA2.EntityFrameworkCore;
+using ObligatorioDA2.Repositories.Interface;
 
 namespace ObligatorioDA2.Application.WeatherForecasts
 {
-    public class ForecastService
+    public class ForecastService : IService<WeatherForecast>
     {
-        private readonly Context _context;
+        private IRepository<WeatherForecast> repository;
 
-        public ForecastService(Context context)
+        public ForecastService(IRepository<WeatherForecast> repository)
         {
-            _context = context;
+            this.repository = repository;
         }
 
-        public IEnumerable<WeatherForecastOutputDto> GetAll()
+        public WeatherForecast Create(WeatherForecast forecast)
         {
-            var forecasts = new List<WeatherForecast>();
-
-            if (_context.WeatherForecasts.Any())
-            {
-                forecasts.AddRange(_context.WeatherForecasts);
-            }
-            return forecasts.Select(Mapper.ToDto);
-        }
-        public WeatherForecastOutputDto Get(int id)
-        {
-
-            return Mapper.ToDto(_context.WeatherForecasts.FirstOrDefault(w => w.Id == id));
+            repository.Add(forecast);
+            repository.Save();
+            return forecast;
         }
 
-        public void Create(WeatherForecastInputDto forecast)
-        {
-            _context.Add(Mapper.ToModel(forecast));
-            _context.SaveChanges();
-        }
-
-        public void Update(WeatherForecastInputDto forecast)
-        {
-            _context.Update(Mapper.ToModel(forecast));
-            _context.SaveChanges();
-        }
         public void Delete(int id)
         {
-            _context.Remove(_context.WeatherForecasts.FirstOrDefault(w => w.Id == id));
-            _context.SaveChanges();
+            WeatherForecast forecast = repository.Get(id);
+            ThrowErrorIfItsNull(forecast);
+            repository.Delete(forecast);
+            repository.Save();
+        }
+
+        public WeatherForecast Update(int id, WeatherForecast forecast)
+        {
+            ThrowErrorIfItsNull(repository.Get(id));
+            WeatherForecast forecastToUpdate = forecast;
+            repository.Update(forecast);
+            repository.Save();
+            return forecast;
+        }
+
+        public WeatherForecast Get(int id)
+        {
+            return repository.Get(id);
+        }
+
+        public IEnumerable<WeatherForecast> GetAll()
+        {
+            return repository.GetAll();
+        }
+
+        private static void ThrowErrorIfItsNull(WeatherForecast forecast)
+        {
+            if (forecast == null)
+            {
+                throw new ArgumentException("Invalid id");
+            }
         }
     }
 }
