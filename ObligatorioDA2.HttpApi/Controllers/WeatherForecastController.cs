@@ -40,19 +40,24 @@ namespace ObligatorioDA2.HttpApi.Controllers
             try
             {
                 _forecastService.Create(Mapper.ToModel(forecast));
-            } catch(ArgumentException e) {
+            }
+            catch (ArgumentException e)
+            {
                 return BadRequest(e.Message);
             }
             return Ok();
         }
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] WeatherForecastInputDto forecast,int id)
+        public IActionResult Put([FromBody] WeatherForecastInputDto forecast, int id)
         {
-            try { 
-            _forecastService.Update(id, Mapper.ToModel(forecast));
-        } catch(ArgumentException e) {
+            try
+            {
+                _forecastService.Update(id, Mapper.ToModel(forecast));
+            }
+            catch (ArgumentException e)
+            {
                 return BadRequest(e.Message);
-        }
+            }
             return Ok();
         }
         [HttpDelete("{id}")]
@@ -61,7 +66,9 @@ namespace ObligatorioDA2.HttpApi.Controllers
             try
             {
                 _forecastService.Delete(forecastId);
-            } catch(ArgumentException e) {
+            }
+            catch (ArgumentException e)
+            {
                 return NotFound(e.Message);
             }
             return Ok();
