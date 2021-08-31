@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ObligatorioDA2.Application.WeatherForecasts.Dtos;
 using ObligatorioDA2.Domain;
@@ -6,7 +7,7 @@ using ObligatorioDA2.EntityFrameworkCore;
 
 namespace ObligatorioDA2.Application.WeatherForecasts
 {
-    public class ForecastService
+    public class ForecastService : IForecastService
     {
         private readonly Context _context;
 
@@ -15,7 +16,7 @@ namespace ObligatorioDA2.Application.WeatherForecasts
             _context = context;
         }
 
-        public IEnumerable<WeatherForecastOutputDto> GetAll()
+        public IEnumerable<WeatherForecastOutputDto> ReadAll()
         {
             var forecasts = new List<WeatherForecast>();
 
@@ -23,28 +24,35 @@ namespace ObligatorioDA2.Application.WeatherForecasts
             {
                 forecasts.AddRange(_context.WeatherForecasts);
             }
+            
             return forecasts.Select(Mapper.ToDto);
         }
-        public WeatherForecastOutputDto Get(int id)
+        
+        public WeatherForecastOutputDto Read(int id)
         {
-
             return Mapper.ToDto(_context.WeatherForecasts.FirstOrDefault(w => w.Id == id));
         }
 
-        public void Create(WeatherForecastInputDto forecast)
+        public WeatherForecastOutputDto Create(WeatherForecastInputDto input)
         {
-            _context.Add(Mapper.ToModel(forecast));
+            WeatherForecast forecast = Mapper.ToModel(input);
+            _context.Add(forecast);
             _context.SaveChanges();
+            return Mapper.ToDto(forecast);
         }
 
-        public void Update(WeatherForecastInputDto forecast)
+        public WeatherForecastOutputDto Update(WeatherForecastInputDto input)
         {
-            _context.Update(Mapper.ToModel(forecast));
+            WeatherForecast forecast = Mapper.ToModel(input);
+            _context.Update(forecast);
             _context.SaveChanges();
+            return Mapper.ToDto(forecast);
         }
+        
         public void Delete(int id)
         {
-            _context.Remove(_context.WeatherForecasts.FirstOrDefault(w => w.Id == id));
+            WeatherForecast forecast = _context.WeatherForecasts.FirstOrDefault(w => w.Id == id);
+            _context.Remove(forecast ?? throw new InvalidOperationException());
             _context.SaveChanges();
         }
     }

@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ObligatorioDA2.Application.WeatherForecasts;
 using ObligatorioDA2.EntityFrameworkCore;
 
 namespace ObligatorioDA2.HttpApi
@@ -33,6 +34,8 @@ namespace ObligatorioDA2.HttpApi
             services.AddDbContext<Context>(
                 o => o.UseSqlServer(Configuration.GetConnectionString("Default"))
             );
+
+            services.AddScoped<IForecastService, ForecastService>();
 
             // services.AddDbContext<Context>(
             //     o => o.UseInMemoryDatabase("ObligatorioDA2")

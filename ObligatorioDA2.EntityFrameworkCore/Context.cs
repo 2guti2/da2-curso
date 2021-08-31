@@ -18,5 +18,10 @@ namespace ObligatorioDA2.EntityFrameworkCore
                 .HasMany(c => c.Forecasts)
                 .WithOne(e => e.User);
         }
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }   
     }
 }
