@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using ObligatorioDA2.Application.WeatherForecasts.Dtos;
+using ObligatorioDA2.Application.Contracts.WeatherForecasts.Dtos;
 
-namespace ObligatorioDA2.Application.WeatherForecasts
+namespace ObligatorioDA2.Application.Contracts.WeatherForecasts
 {
     public interface IForecastService
     {
@@ -11,7 +11,7 @@ namespace ObligatorioDA2.Application.WeatherForecasts
 
         WeatherForecastOutputDto Create(WeatherForecastInputDto forecast);
 
-        WeatherForecastOutputDto Update(WeatherForecastInputDto forecast);
+        WeatherForecastOutputDto Update(int id, WeatherForecastInputDto forecast);
 
         public void Delete(int id);
     }

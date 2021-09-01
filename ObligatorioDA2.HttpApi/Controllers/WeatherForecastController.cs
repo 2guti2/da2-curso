@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using ObligatorioDA2.Application.WeatherForecasts;
-using ObligatorioDA2.Application.WeatherForecasts.Dtos;
+using ObligatorioDA2.Application.Contracts.WeatherForecasts;
+using ObligatorioDA2.Application.Contracts.WeatherForecasts.Dtos;
+using ObligatorioDA2.Domain.Exceptions;
 
 namespace ObligatorioDA2.HttpApi.Controllers
 {
@@ -40,18 +41,25 @@ namespace ObligatorioDA2.HttpApi.Controllers
             return Ok(createdForecast);
         }
 
-        [HttpPut]
-        public ActionResult<WeatherForecastOutputDto> Update([FromBody] WeatherForecastInputDto forecast)
+        [HttpPut("{id:int}")]
+        public ActionResult<WeatherForecastOutputDto> Update(int id, [FromBody] WeatherForecastInputDto forecast)
         {
-            WeatherForecastOutputDto updatedForecast = _forecastService.Update(forecast);
+            WeatherForecastOutputDto updatedForecast = _forecastService.Update(id, forecast);
             return Ok(updatedForecast);
         }
 
         [HttpDelete]
         public ActionResult Delete(int forecastId)
         {
-            _forecastService.Delete(forecastId);
-            return Ok();
+            try
+            {
+                _forecastService.Delete(forecastId);
+                return Ok();
+            }
+            catch (GuardClauseException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

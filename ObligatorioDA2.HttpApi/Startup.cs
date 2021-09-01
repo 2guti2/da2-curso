@@ -1,18 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ObligatorioDA2.Application.Contracts.WeatherForecasts;
 using ObligatorioDA2.Application.WeatherForecasts;
+using ObligatorioDA2.Domain;
 using ObligatorioDA2.EntityFrameworkCore;
+using ObligatorioDA2.EntityFrameworkCore.Repositories;
 
 namespace ObligatorioDA2.HttpApi
 {
@@ -28,7 +25,6 @@ namespace ObligatorioDA2.HttpApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
 
             services.AddDbContext<Context>(
@@ -36,6 +32,7 @@ namespace ObligatorioDA2.HttpApi
             );
 
             services.AddScoped<IForecastService, ForecastService>();
+            services.AddScoped<IRepository<WeatherForecast>, WeatherForecastRepository>();
 
             // services.AddDbContext<Context>(
             //     o => o.UseInMemoryDatabase("ObligatorioDA2")
