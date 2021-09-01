@@ -7,7 +7,7 @@ namespace ObligatorioDA2.EntityFrameworkCore.Repositories
     public class WeatherForecastRepository : BaseRepository<WeatherForecast>
     {
         public WeatherForecastRepository(Context context)
-        { 
+        {
             Context = context;
         }
 
