@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObligatorioDA2.Domain", "Ob
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObligatorioDA2.Application.Contracts", "ObligatorioDA2.Application.Contracts\ObligatorioDA2.Application.Contracts.csproj", "{7B8FF362-2B4E-44F7-8DCD-51D4F445D883}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObligatorioDA2.EntityFrameworkCore.Contracts", "ObligatorioDA2.EntityFrameworkCore.Contracts\ObligatorioDA2.EntityFrameworkCore.Contracts.csproj", "{7856BA38-685C-4281-95AC-2C606054B20D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,5 +88,17 @@ Global
 		{7B8FF362-2B4E-44F7-8DCD-51D4F445D883}.Release|x64.Build.0 = Release|Any CPU
 		{7B8FF362-2B4E-44F7-8DCD-51D4F445D883}.Release|x86.ActiveCfg = Release|Any CPU
 		{7B8FF362-2B4E-44F7-8DCD-51D4F445D883}.Release|x86.Build.0 = Release|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Debug|x64.Build.0 = Debug|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Debug|x86.Build.0 = Debug|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Release|x64.ActiveCfg = Release|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Release|x64.Build.0 = Release|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Release|x86.ActiveCfg = Release|Any CPU
+		{7856BA38-685C-4281-95AC-2C606054B20D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ObligatorioDA2.Application\ObligatorioDA2.Application.csproj" />
+    <ProjectReference Include="..\ObligatorioDA2.EntityFrameworkCore\ObligatorioDA2.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

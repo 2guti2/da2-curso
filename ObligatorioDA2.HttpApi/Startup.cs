@@ -9,6 +9,7 @@ using ObligatorioDA2.Application.Contracts.WeatherForecasts;
 using ObligatorioDA2.Application.WeatherForecasts;
 using ObligatorioDA2.Domain;
 using ObligatorioDA2.EntityFrameworkCore;
+using ObligatorioDA2.EntityFrameworkCore.Contracts;
 using ObligatorioDA2.EntityFrameworkCore.Repositories;
 
 namespace ObligatorioDA2.HttpApi

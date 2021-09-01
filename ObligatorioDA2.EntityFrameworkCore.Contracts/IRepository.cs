@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace ObligatorioDA2.EntityFrameworkCore.Repositories
+namespace ObligatorioDA2.EntityFrameworkCore.Contracts
 {
     public interface IRepository<T> where T : class
     {

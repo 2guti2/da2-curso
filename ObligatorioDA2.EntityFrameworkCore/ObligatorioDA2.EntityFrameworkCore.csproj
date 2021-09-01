@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ObligatorioDA2.Domain\ObligatorioDA2.Domain.csproj" />
+    <ProjectReference Include="..\ObligatorioDA2.EntityFrameworkCore.Contracts\ObligatorioDA2.EntityFrameworkCore.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

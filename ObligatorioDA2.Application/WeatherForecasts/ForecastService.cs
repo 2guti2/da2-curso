@@ -4,7 +4,7 @@ using System.Linq;
 using ObligatorioDA2.Application.Contracts.WeatherForecasts;
 using ObligatorioDA2.Application.Contracts.WeatherForecasts.Dtos;
 using ObligatorioDA2.Domain;
-using ObligatorioDA2.EntityFrameworkCore.Repositories;
+using ObligatorioDA2.EntityFrameworkCore.Contracts;
 
 namespace ObligatorioDA2.Application.WeatherForecasts
 {
