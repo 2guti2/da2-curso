@@ -17,7 +17,7 @@ namespace ObligatorioDA2.Domain
         public string Summary { get; set; }
 
         public virtual User User { get; set; }
-        
+
         public int? UserId { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace ObligatorioDA2.HttpApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
+
             services.AddDbContext<Context>(
                 o => o.UseSqlServer(Configuration.GetConnectionString("Default"))
             );

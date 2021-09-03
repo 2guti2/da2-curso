@@ -22,7 +22,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
         {
             return Ok(_forecastService.ReadAll());
         }
-        
+
         [HttpGet("{id:int}")]
         public ActionResult<WeatherForecastOutputDto> Read(int id)
         {
@@ -33,7 +33,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
             }
             return Ok(forecast);
         }
-        
+
         [HttpPost]
         public ActionResult<WeatherForecastOutputDto> Create([FromBody] WeatherForecastInputDto forecast)
         {
