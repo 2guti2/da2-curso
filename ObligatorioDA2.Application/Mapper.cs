@@ -14,14 +14,13 @@ namespace ObligatorioDA2.Application
                 Summary = forecast.Summary,
                 TemperatureC = forecast.TemperatureC,
                 TemperatureF = forecast.TemperatureF,
-                UserId = forecast.UserId
+                User = forecast.User?.Username
             };
         }
         public static WeatherForecast ToModel(WeatherForecastInputDto forecast)
         {
             return new WeatherForecast
             {
-                Id = forecast.Id,
                 Date = forecast.Date,
                 Summary = forecast.Summary,
                 TemperatureC = forecast.TemperatureC,

@@ -14,6 +14,6 @@ namespace ObligatorioDA2.Application.WeatherForecasts.Dtos
 
         public string Summary { get; set; }
 
-        public int UserId { get; set; }
+        public string User { get; set; }
     }
 }
