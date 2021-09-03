@@ -5,8 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ObligatorioDA2.Application.Contracts\ObligatorioDA2.Application.Contracts.csproj" />
       <ProjectReference Include="..\ObligatorioDA2.Domain\ObligatorioDA2.Domain.csproj" />
-      <ProjectReference Include="..\ObligatorioDA2.EntityFrameworkCore\ObligatorioDA2.EntityFrameworkCore.csproj" />
+      <ProjectReference Include="..\ObligatorioDA2.EntityFrameworkCore.Contracts\ObligatorioDA2.EntityFrameworkCore.Contracts.csproj" />
     </ItemGroup>
 
 </Project>

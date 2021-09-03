@@ -1,4 +1,4 @@
-using ObligatorioDA2.Application.WeatherForecasts.Dtos;
+using ObligatorioDA2.Application.Contracts.WeatherForecasts.Dtos;
 using ObligatorioDA2.Domain;
 
 namespace ObligatorioDA2.Application

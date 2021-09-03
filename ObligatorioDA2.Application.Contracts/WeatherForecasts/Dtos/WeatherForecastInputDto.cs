@@ -1,6 +1,6 @@
 using System;
 
-namespace ObligatorioDA2.Application.WeatherForecasts.Dtos
+namespace ObligatorioDA2.Application.Contracts.WeatherForecasts.Dtos
 {
     public class WeatherForecastInputDto
     {
@@ -10,6 +10,6 @@ namespace ObligatorioDA2.Application.WeatherForecasts.Dtos
 
         public string Summary { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; } = null;
     }
 }

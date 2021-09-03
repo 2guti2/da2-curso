@@ -1,6 +1,6 @@
 using System;
 
-namespace ObligatorioDA2.Application.WeatherForecasts.Dtos
+namespace ObligatorioDA2.Application.Contracts.WeatherForecasts.Dtos
 {
     public class WeatherForecastOutputDto
     {
