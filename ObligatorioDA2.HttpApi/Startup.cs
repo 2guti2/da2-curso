@@ -5,13 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-<<<<<<< HEAD
 using ObligatorioDA2.Application.Contracts.WeatherForecasts;
 using ObligatorioDA2.Application.WeatherForecasts;
 using ObligatorioDA2.Domain;
-=======
-using ObligatorioDA2.Application.WeatherForecasts;
->>>>>>> master
 using ObligatorioDA2.EntityFrameworkCore;
 using ObligatorioDA2.EntityFrameworkCore.Contracts;
 using ObligatorioDA2.EntityFrameworkCore.Repositories;
