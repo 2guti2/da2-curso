@@ -13,5 +13,12 @@ namespace ObligatorioDA2.EntityFrameworkCore
 
             return new Context(builder.Options);
         }
+
+        public static Context GetInMemoryContext(string dbName)
+        {
+            var builder = new DbContextOptionsBuilder<Context>();
+            builder.UseInMemoryDatabase(dbName);
+            return new Context(builder.Options);
+        }
     }
 }
