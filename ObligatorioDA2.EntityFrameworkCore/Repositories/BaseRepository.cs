@@ -33,12 +33,12 @@ namespace ObligatorioDA2.EntityFrameworkCore.Repositories
         {
             return Context.Set<T>().ToList();
         }
-
+        
         public virtual IEnumerable<T> ReadAllWhere(Func<T, bool> predicate)
         {
             return Context.Set<T>().Where(predicate).ToList();
         }
-
+        
         public bool Any()
         {
             return Context.Set<T>().Any();
