@@ -37,7 +37,7 @@ namespace ObligatorioDA2.HttpApi.Tests
             var result = actionResult.Result as OkObjectResult;
 
             mock.VerifyAll();
-            Assert.AreEqual(result?.Value, _all);
+            Assert.AreEqual(_all, result?.Value);
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace ObligatorioDA2.HttpApi.Tests
             var result = actionResult.Result as OkObjectResult;
 
             mock.VerifyAll();
-            Assert.AreEqual(result?.Value, _onlyHot);
+            Assert.AreEqual(_onlyHot, result?.Value);
         }
     }
 }
