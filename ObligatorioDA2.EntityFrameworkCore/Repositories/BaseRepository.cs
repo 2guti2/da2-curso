@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,11 @@ namespace ObligatorioDA2.EntityFrameworkCore.Repositories
         public virtual IEnumerable<T> ReadAll()
         {
             return Context.Set<T>().ToList();
+        }
+
+        public virtual IEnumerable<T> ReadAllWhere(Func<T, bool> predicate)
+        {
+            return Context.Set<T>().Where(predicate).ToList();
         }
 
         public bool Any()
