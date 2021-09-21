@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Castle.Core.Internal;
 using Microsoft.AspNetCore.Mvc;
 using ObligatorioDA2.Application.Contracts.WeatherForecasts;
 using ObligatorioDA2.Application.Contracts.WeatherForecasts.Dtos;
@@ -18,9 +19,11 @@ namespace ObligatorioDA2.HttpApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<WeatherForecastOutputDto>> ReadAll()
+        public ActionResult<IEnumerable<WeatherForecastOutputDto>> ReadAll([FromQuery(Name = "summary")] string summary)
         {
-            return Ok(_forecastService.ReadAll());
+            return Ok(summary.IsNullOrEmpty()
+                ? _forecastService.ReadAll()
+                : _forecastService.ReadAllWithSummary(summary));
         }
 
         [HttpGet("{id:int}")]

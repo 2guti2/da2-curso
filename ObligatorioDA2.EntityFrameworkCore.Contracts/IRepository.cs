@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ObligatorioDA2.EntityFrameworkCore.Contracts
@@ -15,5 +16,7 @@ namespace ObligatorioDA2.EntityFrameworkCore.Contracts
         bool Any();
 
         T Read(int id);
+
+        IEnumerable<T> ReadAllWhere(Func<T, bool> predicate);
     }
 }

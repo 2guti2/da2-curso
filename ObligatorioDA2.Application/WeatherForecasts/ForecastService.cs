@@ -49,5 +49,11 @@ namespace ObligatorioDA2.Application.WeatherForecasts
             Guard.Requires(() => forecast != null, "Forecast doesn't exist.");
             _weatherForecastsRepo.Delete(forecast ?? throw new InvalidOperationException());
         }
+
+        public IEnumerable<WeatherForecastOutputDto> ReadAllWithSummary(string summary)
+        {
+            IEnumerable<WeatherForecast> forecasts = _weatherForecastsRepo.ReadAllWhere(f => f.Summary == summary);
+            return forecasts.Select(Mapper.ToDto);
+        }
     }
 }
