@@ -12,7 +12,7 @@ namespace ObligatorioDA2.HttpApi.Filters
         {
             try
             {
-                var userService = (IUserService) context.HttpContext.RequestServices.GetService(typeof(IUserService));
+                var userService = (IUserService)context.HttpContext.RequestServices.GetService(typeof(IUserService));
 
                 string token = context.HttpContext.Request.Headers["Authorization"].ToString().Split(" ")[1];
 

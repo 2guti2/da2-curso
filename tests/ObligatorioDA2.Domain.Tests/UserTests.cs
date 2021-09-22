@@ -13,7 +13,7 @@ namespace ObligatorioDA2.Domain.Tests
                 Username = "john_doe",
                 Password = "123456"
             };
-            
+
             Assert.IsTrue(user.IsPasswordValid("123456"));
         }
 
@@ -25,7 +25,7 @@ namespace ObligatorioDA2.Domain.Tests
                 Username = "john_doe",
                 Password = "123456"
             };
-            
+
             Assert.IsFalse(user.IsPasswordValid("1234"));
         }
     }
