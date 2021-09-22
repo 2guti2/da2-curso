@@ -15,7 +15,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
                 Content = "Internal error"
             };
 
-            if(context.Exception is GuardClauseException)
+            if (context.Exception is GuardClauseException)
             {
                 context.Result = new ContentResult()
                 {

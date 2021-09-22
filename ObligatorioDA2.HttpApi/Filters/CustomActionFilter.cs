@@ -7,7 +7,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
 {
     public class CustomActionFilter : Attribute, IActionFilter
     {
-        private Stopwatch timer; 
+        private Stopwatch timer;
         public void OnActionExecuting(ActionExecutingContext context)
         {
             timer = Stopwatch.StartNew();

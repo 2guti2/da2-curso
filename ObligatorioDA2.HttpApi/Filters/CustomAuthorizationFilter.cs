@@ -4,19 +4,19 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace ObligatorioDA2.HttpApi.Controllers
 {
-    public class CustomAuthorizationFilter: Attribute, IAuthorizationFilter
+    public class CustomAuthorizationFilter : Attribute, IAuthorizationFilter
     {
 
-    public void OnAuthorization(AuthorizationFilterContext context)
-    {
-        string token = context.HttpContext.Request.Headers["auth"];
-        if (token == null)
+        public void OnAuthorization(AuthorizationFilterContext context)
         {
-            context.Result = new ContentResult()
+            string token = context.HttpContext.Request.Headers["auth"];
+            if (token == null)
             {
-                StatusCode = 401,
-                Content =  "No esta autorizado"
-            };
+                context.Result = new ContentResult()
+                {
+                    StatusCode = 401,
+                    Content = "No esta autorizado"
+                };
             }
         }
     }
