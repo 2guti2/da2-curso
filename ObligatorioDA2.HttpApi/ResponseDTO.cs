@@ -7,62 +7,9 @@ using ObligatorioDA2.Domain.Exceptions;
 
 namespace ObligatorioDA2.HttpApi.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class ResponseDTO 
     {
-        private readonly IForecastService _forecastService;
-
-        public WeatherForecastController(IForecastService forecastService)
-        {
-            _forecastService = forecastService;
-        }
-
-        [HttpGet]
-        public ActionResult<IEnumerable<WeatherForecastOutputDto>> ReadAll([FromQuery(Name = "summary")] string summary)
-        {
-            return Ok(summary.IsNullOrEmpty()
-                ? _forecastService.ReadAll()
-                : _forecastService.ReadAllWithSummary(summary));
-        }
-
-        [HttpGet("{id:int}")]
-        public ActionResult<WeatherForecastOutputDto> Read(int id)
-        {
-            WeatherForecastOutputDto forecast = _forecastService.Read(id);
-            if (forecast == null)
-            {
-                return NotFound();
-            }
-            return Ok(forecast);
-        }
-
-        [HttpPost]
-        public ActionResult<WeatherForecastOutputDto> Create([FromBody] WeatherForecastInputDto forecast)
-        {
-            WeatherForecastOutputDto createdForecast = _forecastService.Create(forecast);
-            return Ok(createdForecast);
-        }
-
-        [HttpPut("{id:int}")]
-        public ActionResult<WeatherForecastOutputDto> Update(int id, [FromBody] WeatherForecastInputDto forecast)
-        {
-            WeatherForecastOutputDto updatedForecast = _forecastService.Update(id, forecast);
-            return Ok(updatedForecast);
-        }
-
-        [HttpDelete]
-        public ActionResult Delete(int forecastId)
-        {
-            try
-            {
-                _forecastService.Delete(forecastId);
-                return Ok();
-            }
-            catch (GuardClauseException e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+        public object Content { get; set; }
+        public int Code { get; set; }
     }
 }

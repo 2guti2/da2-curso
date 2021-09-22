@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace ObligatorioDA2.HttpApi.Controllers
 {
-    public class WeatherForecastAuthorizationFilter: Attribute, IAuthorizationFilter
+    public class CustomAuthorizationFilter: Attribute, IAuthorizationFilter
     {
 
     public void OnAuthorization(AuthorizationFilterContext context)
@@ -17,7 +17,6 @@ namespace ObligatorioDA2.HttpApi.Controllers
                 StatusCode = 401,
                 Content =  "No esta autorizado"
             };
-            return;
             }
         }
     }

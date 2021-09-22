@@ -1,24 +1,22 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace ObligatorioDA2.HttpApi.Controllers
 {
-    public class CustomAuthorizationFilter: Attribute, IAuthorizationFilter
+    public class CustomActionFilter : Attribute, IActionFilter
     {
-
-    public void OnAuthorization(AuthorizationFilterContext context)
-    {
-        string token = context.HttpContext.Request.Headers["auth"];
-        if (token == null)
+        private Stopwatch timer; 
+        public void OnActionExecuting(ActionExecutingContext context)
         {
-            context.Result = new ContentResult()
-            {
-                StatusCode = 401,
-                Content =  "No esta autorizado"
-            };
-            return;
-            }
+            timer = Stopwatch.StartNew();
+        }
+        public void OnActionExecuted(ActionExecutedContext context)
+        {
+            timer.Stop();
+            string result = " Tiempo de ejecucion: " + $"{timer.Elapsed.TotalMilliseconds} ms";
+            ((ObjectResult)context.Result).Value = result;
         }
     }
 }

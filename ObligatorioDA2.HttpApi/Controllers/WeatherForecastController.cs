@@ -8,6 +8,8 @@ using ObligatorioDA2.Domain.Exceptions;
 namespace ObligatorioDA2.HttpApi.Controllers
 {
     [ApiController]
+    [CustomAuthorizationFilter]
+    [ExceptionFilter]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
@@ -51,18 +53,12 @@ namespace ObligatorioDA2.HttpApi.Controllers
             return Ok(updatedForecast);
         }
 
-        [HttpDelete]
-        public ActionResult Delete(int forecastId)
+        [HttpDelete("{id:int}")]
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                _forecastService.Delete(forecastId);
-                return Ok();
-            }
-            catch (GuardClauseException e)
-            {
-                return BadRequest(e.Message);
-            }
+            _forecastService.Delete(id);
+            return Ok();
+
         }
     }
 }
