@@ -13,4 +13,10 @@
     <ProjectReference Include="..\ObligatorioDA2.EntityFrameworkCore\ObligatorioDA2.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Filters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Filters\" />
+  </ItemGroup>
 </Project>
