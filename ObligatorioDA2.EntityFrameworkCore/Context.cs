@@ -14,6 +14,8 @@ namespace ObligatorioDA2.EntityFrameworkCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().Property(User.PasswordHashExpression);
+
             modelBuilder.Entity<User>()
                 .HasMany(c => c.Forecasts)
                 .WithOne(e => e.User);

@@ -1,3 +1,4 @@
+using ObligatorioDA2.Application.Contracts.Users.Dtos;
 using ObligatorioDA2.Application.Contracts.WeatherForecasts.Dtos;
 using ObligatorioDA2.Domain;
 
@@ -25,6 +26,15 @@ namespace ObligatorioDA2.Application
                 Summary = forecast.Summary,
                 TemperatureC = forecast.TemperatureC,
                 UserId = forecast.UserId
+            };
+        }
+
+        public static UserOutputDto ToDto(User user)
+        {
+            return new UserOutputDto
+            {
+                Id = user.Id,
+                Username = user.Username
             };
         }
     }

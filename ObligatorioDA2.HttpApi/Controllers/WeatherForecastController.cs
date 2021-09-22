@@ -9,6 +9,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
 {
     [ApiController]
     [ExceptionFilter]
+    [AuthenticationFilter]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
