@@ -25,9 +25,9 @@ namespace ObligatorioDA2.HttpApi.Filters
 
                 context.HttpContext.Items.Add("username", username);
 
-                bool isAuthorized = userService.IsAuthorized(username, password);
+                bool authenticationWorks = userService.AuthenticationWorks(username, password);
 
-                if (!isAuthorized)
+                if (!authenticationWorks)
                 {
                     Unauthorized(context);
                 }

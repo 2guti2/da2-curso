@@ -22,7 +22,7 @@ namespace ObligatorioDA2.Application.Users
             return Mapper.ToDto(_userRepo.Read(user.Id));
         }
 
-        public bool IsAuthorized(string username, string password)
+        public bool AuthenticationWorks(string username, string password)
         {
             User user = _userRepo.ReadAllWhere(u => u.Username == username).FirstOrDefault();
             return user != null && user.IsPasswordValid(password);
