@@ -43,10 +43,10 @@ namespace ObligatorioDA2.Application.Users
             return user != null && user.CanPerform(action);
         }
 
-        public void Assign(RoleDto input)
+        public void Assign(int userId, string role)
         {
-            User user = _userRepo.Read(input.UserId);
-            user.Assign(input.Role);
+            User user = _userRepo.Read(userId);
+            user.Assign(role);
             _userRepo.Update(user);
         }
     }

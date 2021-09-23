@@ -18,7 +18,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
         [HttpPost]
         public ActionResult Create([FromBody] RoleDto role)
         {
-            _userService.Assign(role);
+            _userService.Assign(role.UserId, role.Role);
             return Ok();
         }
     }
