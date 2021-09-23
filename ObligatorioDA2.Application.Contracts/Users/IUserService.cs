@@ -1,3 +1,4 @@
+using ObligatorioDA2.Application.Contracts.Roles.Dtos;
 using ObligatorioDA2.Application.Contracts.Users.Dtos;
 
 namespace ObligatorioDA2.Application.Contracts.Users
@@ -7,5 +8,6 @@ namespace ObligatorioDA2.Application.Contracts.Users
         UserOutputDto Create(UserInputDto user);
         bool IsAuthorized(string username, string password);
         bool CanPerform(string username, string action);
+        void Assign(RoleDto role);
     }
 }

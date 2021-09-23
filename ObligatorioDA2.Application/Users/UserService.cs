@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using ObligatorioDA2.Application.Contracts.Roles.Dtos;
 using ObligatorioDA2.Application.Contracts.Users;
 using ObligatorioDA2.Application.Contracts.Users.Dtos;
 using ObligatorioDA2.Domain;
@@ -40,6 +41,13 @@ namespace ObligatorioDA2.Application.Users
         {
             User user = _userRepo.ReadAllWhere(u => u.Username == username).FirstOrDefault();
             return user != null && user.CanPerform(action);
+        }
+
+        public void Assign(RoleDto input)
+        {
+            User user = _userRepo.Read(input.UserId);
+            user.Assign(input.Role);
+            _userRepo.Update(user);
         }
     }
 }
