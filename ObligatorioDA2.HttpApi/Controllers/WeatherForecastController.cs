@@ -3,11 +3,13 @@ using Castle.Core.Internal;
 using Microsoft.AspNetCore.Mvc;
 using ObligatorioDA2.Application.Contracts.WeatherForecasts;
 using ObligatorioDA2.Application.Contracts.WeatherForecasts.Dtos;
-using ObligatorioDA2.Domain.Exceptions;
+using ObligatorioDA2.HttpApi.Filters;
 
 namespace ObligatorioDA2.HttpApi.Controllers
 {
     [ApiController]
+    [ExceptionFilter]
+    [AuthenticationFilter]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
@@ -54,15 +56,8 @@ namespace ObligatorioDA2.HttpApi.Controllers
         [HttpDelete]
         public ActionResult Delete(int forecastId)
         {
-            try
-            {
-                _forecastService.Delete(forecastId);
-                return Ok();
-            }
-            catch (GuardClauseException e)
-            {
-                return BadRequest(e.Message);
-            }
+            _forecastService.Delete(forecastId);
+            return Ok();
         }
     }
 }

@@ -14,6 +14,7 @@ namespace ObligatorioDA2.Application.Contracts.WeatherForecasts
         WeatherForecastOutputDto Update(int id, WeatherForecastInputDto forecast);
 
         public void Delete(int id);
+
         IEnumerable<WeatherForecastOutputDto> ReadAllWithSummary(string summary);
     }
 }
