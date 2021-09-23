@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using ObligatorioDA2.Application.Contracts.Users;
 using ObligatorioDA2.Application.Contracts.Users.Dtos;
+using ObligatorioDA2.HttpApi.Filters;
 
 namespace ObligatorioDA2.HttpApi.Controllers
 {
     [ApiController]
+    [ExceptionFilter]
     [Route("[controller]")]
     public class UserController : ControllerBase
     {

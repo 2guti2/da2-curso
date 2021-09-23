@@ -1,4 +1,3 @@
-using ObligatorioDA2.Application.Contracts.Roles.Dtos;
 using ObligatorioDA2.Application.Contracts.Users.Dtos;
 
 namespace ObligatorioDA2.Application.Contracts.Users

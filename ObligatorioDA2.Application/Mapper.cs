@@ -37,5 +37,14 @@ namespace ObligatorioDA2.Application
                 Username = user.Username
             };
         }
+
+        public static User ToModel(UserInputDto input)
+        {
+            return new User
+            {
+                Username = input.Username,
+                Password = input.Password
+            };
+        }
     }
 }

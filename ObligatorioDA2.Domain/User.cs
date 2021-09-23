@@ -26,6 +26,11 @@ namespace ObligatorioDA2.Domain
 
         public virtual ICollection<Role> Roles { get; set; }
 
+        public User()
+        {
+            Roles = new List<Role> {new MemberRole()};
+        }
+
         public bool IsPasswordValid(string password)
         {
             return BCrypt.Net.BCrypt.Verify(password, _passwordHash);
