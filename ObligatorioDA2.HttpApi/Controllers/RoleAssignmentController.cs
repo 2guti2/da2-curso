@@ -6,11 +6,11 @@ namespace ObligatorioDA2.HttpApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RoleController : ControllerBase
+    public class RoleAssignmentController : ControllerBase
     {
         private readonly IUserService _userService;
 
-        public RoleController(IUserService userService)
+        public RoleAssignmentController(IUserService userService)
         {
             _userService = userService;
         }
