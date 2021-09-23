@@ -17,20 +17,28 @@ namespace ObligatorioDA2.Application.Users
 
         public UserOutputDto Create(UserInputDto input)
         {
-            var user = new User
-            {
-                Username = input.Username,
-                Password = input.Password
-            };
-
+            User user = Mapper.ToModel(input);
             _userRepo.Create(user);
             return Mapper.ToDto(_userRepo.Read(user.Id));
         }
 
-        public bool IsAuthorized(string username, string password)
+        public bool AuthenticationWorks(string username, string password)
         {
             User user = _userRepo.ReadAllWhere(u => u.Username == username).FirstOrDefault();
             return user != null && user.IsPasswordValid(password);
+        }
+
+        public bool CanPerform(string username, string action)
+        {
+            User user = _userRepo.ReadAllWhere(u => u.Username == username).FirstOrDefault();
+            return user != null && user.CanPerform(action);
+        }
+
+        public void Assign(int userId, string role)
+        {
+            User user = _userRepo.Read(userId);
+            user.Assign(role);
+            _userRepo.Update(user);
         }
     }
 }
