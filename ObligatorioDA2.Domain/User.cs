@@ -28,7 +28,7 @@ namespace ObligatorioDA2.Domain
 
         public User()
         {
-            Roles = new List<Role> {new MemberRole()};
+            Roles = new List<Role> { new MemberRole() };
         }
 
         public bool IsPasswordValid(string password)
