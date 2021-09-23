@@ -47,7 +47,7 @@ namespace ObligatorioDA2.Domain
             if (inputRole.Equals("MemberRole", StringComparison.OrdinalIgnoreCase))
             {
                 Roles.Add(new MemberRole());
-            } 
+            }
             else if (inputRole.Equals("AdminRole", StringComparison.OrdinalIgnoreCase))
             {
                 Roles.Add(new AdminRole());
