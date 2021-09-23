@@ -23,6 +23,8 @@ namespace ObligatorioDA2.HttpApi.Filters
                 string username = userPass[0];
                 string password = userPass[1];
 
+                context.HttpContext.Items.Add("username", username);
+
                 bool isAuthorized = userService.IsAuthorized(username, password);
 
                 if (!isAuthorized)

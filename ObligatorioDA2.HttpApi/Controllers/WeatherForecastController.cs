@@ -21,6 +21,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
         }
 
         [HttpGet]
+        [AuthorizeAction("ReadForecasts")]
         public ActionResult<IEnumerable<WeatherForecastOutputDto>> ReadAll([FromQuery(Name = "summary")] string summary)
         {
             return Ok(summary.IsNullOrEmpty()
@@ -40,6 +41,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
         }
 
         [HttpPost]
+        [AuthorizeAction("CreateForecasts")]
         public ActionResult<WeatherForecastOutputDto> Create([FromBody] WeatherForecastInputDto forecast)
         {
             WeatherForecastOutputDto createdForecast = _forecastService.Create(forecast);

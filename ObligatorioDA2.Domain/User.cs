@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq.Expressions;
+using ObligatorioDA2.Domain.Roles;
 
 namespace ObligatorioDA2.Domain
 {
@@ -23,9 +24,22 @@ namespace ObligatorioDA2.Domain
 
         public virtual ICollection<WeatherForecast> Forecasts { get; set; }
 
+        public virtual ICollection<Role> Roles { get; set; }
+
         public bool IsPasswordValid(string password)
         {
             return BCrypt.Net.BCrypt.Verify(password, _passwordHash);
+        }
+
+        public bool CanPerform(string action)
+        {
+            var exists = false;
+            foreach (Role role in Roles)
+            {
+                exists |= role.Actions.Exists(a => a.ToString().Equals(action, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return exists;
         }
     }
 }
