@@ -19,7 +19,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
 
         public WeatherForecastController(
             IForecastService forecastService,
-            ILogger<WeatherForecastController> logger
+            ILogger<WeatherForecastController> logger = null
         )
         {
             _forecastService = forecastService;
