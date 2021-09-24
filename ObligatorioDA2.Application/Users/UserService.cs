@@ -54,7 +54,7 @@ namespace ObligatorioDA2.Application.Users
                 _roleRepo.Create(new AdminRole());
                 _roleRepo.Create(new MemberRole());
             }
-            
+
             IEnumerable<string> roleTypes = _roleRepo.ReadAll().Select(r => r.GetType().ToString()).Distinct();
             return roleTypes.Select(roleType => _roleRepo.First(r => r.GetType().ToString() == roleType));
         }
