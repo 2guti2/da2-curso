@@ -30,7 +30,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
         [AuthorizeAction("ReadForecasts")]
         public ActionResult<IEnumerable<WeatherForecastOutputDto>> ReadAll([FromQuery(Name = "summary")] string summary)
         {
-            _logger.LogInformation($"Username is: {Username}");
+            _logger?.LogInformation($"Username is: {Username}");
             return Ok(summary.IsNullOrEmpty()
                 ? _forecastService.ReadAll()
                 : _forecastService.ReadAllWithSummary(summary));
