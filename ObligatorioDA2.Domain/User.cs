@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Linq.Expressions;
 using ObligatorioDA2.Domain.Roles;
 
@@ -17,6 +18,8 @@ namespace ObligatorioDA2.Domain
 
         public static readonly Expression<Func<User, string>> PasswordHashExpression = u => u._passwordHash;
 
+        public const string DefaultRole = "MemberRole";
+
         public string Password
         {
             set => _passwordHash = BCrypt.Net.BCrypt.HashPassword(value);
@@ -24,12 +27,7 @@ namespace ObligatorioDA2.Domain
 
         public virtual ICollection<WeatherForecast> Forecasts { get; set; }
 
-        public virtual ICollection<Role> Roles { get; set; }
-
-        public User()
-        {
-            Roles = new List<Role> { new MemberRole() };
-        }
+        public virtual ICollection<Role> Roles { get; set; } = new List<Role>();
 
         public bool IsPasswordValid(string password)
         {
@@ -47,15 +45,14 @@ namespace ObligatorioDA2.Domain
             return exists;
         }
 
-        public void Assign(string inputRole)
+        public void Assign(IEnumerable<Role> availableRoles, string inputRole)
         {
-            if (inputRole.Equals("MemberRole", StringComparison.OrdinalIgnoreCase))
+            Role role =
+                availableRoles.FirstOrDefault(r =>
+                    r.GetType().BaseType.ToString().Contains(inputRole, StringComparison.OrdinalIgnoreCase));
+            if (!Roles.Contains(role))
             {
-                Roles.Add(new MemberRole());
-            }
-            else if (inputRole.Equals("AdminRole", StringComparison.OrdinalIgnoreCase))
-            {
-                Roles.Add(new AdminRole());
+                Roles.Add(role);
             }
         }
     }
