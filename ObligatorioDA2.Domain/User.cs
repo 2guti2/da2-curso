@@ -18,7 +18,7 @@ namespace ObligatorioDA2.Domain
 
         public static readonly Expression<Func<User, string>> PasswordHashExpression = u => u._passwordHash;
 
-        public static readonly string DefaultRole = "MemberRole";
+        public const string DefaultRole = "MemberRole";
 
         public string Password
         {
@@ -50,7 +50,10 @@ namespace ObligatorioDA2.Domain
             Role role =
                 availableRoles.FirstOrDefault(r =>
                     r.GetType().BaseType.ToString().Contains(inputRole, StringComparison.OrdinalIgnoreCase));
-            Roles.Add(role);
+            if (!Roles.Contains(role))
+            {
+                Roles.Add(role);
+            }
         }
     }
 }
