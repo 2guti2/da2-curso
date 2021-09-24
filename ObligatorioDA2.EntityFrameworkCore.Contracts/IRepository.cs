@@ -18,5 +18,7 @@ namespace ObligatorioDA2.EntityFrameworkCore.Contracts
         T Read(int id);
 
         IEnumerable<T> ReadAllWhere(Func<T, bool> predicate);
+        
+        T First(Func<T, bool> predicate);
     }
 }

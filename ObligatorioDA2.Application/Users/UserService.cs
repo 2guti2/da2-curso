@@ -1,7 +1,10 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using ObligatorioDA2.Application.Contracts.Users;
 using ObligatorioDA2.Application.Contracts.Users.Dtos;
 using ObligatorioDA2.Domain;
+using ObligatorioDA2.Domain.Roles;
 using ObligatorioDA2.EntityFrameworkCore.Contracts;
 
 namespace ObligatorioDA2.Application.Users
@@ -9,16 +12,19 @@ namespace ObligatorioDA2.Application.Users
     public class UserService : IUserService
     {
         private readonly IRepository<User> _userRepo;
+        private readonly IRepository<Role> _roleRepo;
 
-        public UserService(IRepository<User> userRepo)
+        public UserService(IRepository<User> userRepo, IRepository<Role> roleRepo)
         {
             _userRepo = userRepo;
+            _roleRepo = roleRepo;
         }
 
         public UserOutputDto Create(UserInputDto input)
         {
             User user = Mapper.ToModel(input);
             _userRepo.Create(user);
+            Assign(user.Id, User.DefaultRole);
             return Mapper.ToDto(_userRepo.Read(user.Id));
         }
 
@@ -37,8 +43,20 @@ namespace ObligatorioDA2.Application.Users
         public void Assign(int userId, string role)
         {
             User user = _userRepo.Read(userId);
-            user.Assign(role);
+            user.Assign(AvailableRoles(), role);
             _userRepo.Update(user);
+        }
+
+        private IEnumerable<Role> AvailableRoles()
+        {
+            if (!_roleRepo.ReadAll().Any())
+            {
+                _roleRepo.Create(new AdminRole());
+                _roleRepo.Create(new MemberRole());
+            }
+            
+            IEnumerable<string> roleTypes = _roleRepo.ReadAll().Select(r => r.GetType().ToString()).Distinct();
+            return roleTypes.Select(roleType => _roleRepo.First(r => r.GetType().ToString() == roleType));
         }
     }
 }

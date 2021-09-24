@@ -10,6 +10,7 @@ using ObligatorioDA2.Application.Contracts.WeatherForecasts;
 using ObligatorioDA2.Application.Users;
 using ObligatorioDA2.Application.WeatherForecasts;
 using ObligatorioDA2.Domain;
+using ObligatorioDA2.Domain.Roles;
 using ObligatorioDA2.EntityFrameworkCore;
 using ObligatorioDA2.EntityFrameworkCore.Contracts;
 using ObligatorioDA2.EntityFrameworkCore.Repositories;
@@ -41,6 +42,7 @@ namespace ObligatorioDA2.HttpApi
             // Repos
             services.AddScoped<IRepository<WeatherForecast>, WeatherForecastRepository>();
             services.AddScoped<IRepository<User>, UserRepository>();
+            services.AddScoped<IRepository<Role>, RoleRepository>();
 
             // services.AddDbContext<Context>(
             //     o => o.UseInMemoryDatabase("ObligatorioDA2")

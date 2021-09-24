@@ -39,6 +39,11 @@ namespace ObligatorioDA2.EntityFrameworkCore.Repositories
             return Context.Set<T>().Where(predicate).ToList();
         }
 
+        public T First(Func<T, bool> predicate)
+        {
+            return Context.Set<T>().First(predicate);
+        }
+
         public bool Any()
         {
             return Context.Set<T>().Any();
