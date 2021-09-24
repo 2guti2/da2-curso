@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Castle.Core.Internal;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using ObligatorioDA2.Application.Contracts.WeatherForecasts;
 using ObligatorioDA2.Application.Contracts.WeatherForecasts.Dtos;
 using ObligatorioDA2.HttpApi.Filters;
@@ -11,19 +12,25 @@ namespace ObligatorioDA2.HttpApi.Controllers
     [ExceptionFilter]
     [AuthenticationFilter]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : CustomControllerBase
     {
         private readonly IForecastService _forecastService;
+        private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(IForecastService forecastService)
+        public WeatherForecastController(
+            IForecastService forecastService,
+            ILogger<WeatherForecastController> logger = null
+        )
         {
             _forecastService = forecastService;
+            _logger = logger;
         }
 
         [HttpGet]
         [AuthorizeAction("ReadForecasts")]
         public ActionResult<IEnumerable<WeatherForecastOutputDto>> ReadAll([FromQuery(Name = "summary")] string summary)
         {
+            _logger?.LogInformation($"Username is: {Username}");
             return Ok(summary.IsNullOrEmpty()
                 ? _forecastService.ReadAll()
                 : _forecastService.ReadAllWithSummary(summary));
