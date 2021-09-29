@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
@@ -57,24 +58,24 @@ namespace ObligatorioDA2.HttpApi
 
         private void LoadApplicationServices(IServiceCollection services)
         {
-            var contractAssemblyName = "ObligatorioDA2.Application.Contracts";
-            var contractAssembly = Assembly.Load(contractAssemblyName);
+            const string contractAssemblyName = "ObligatorioDA2.Application.Contracts";
+            Assembly contractAssembly = Assembly.Load(contractAssemblyName);
             // get all interfaces from this assembly
-            var interfaces = contractAssembly.GetTypes().Where(t => t.IsInterface);
+            IEnumerable<Type> interfaces = contractAssembly.GetTypes().Where(t => t.IsInterface);
             
             // remove '.Contracts' from name
-            var sections = contractAssemblyName.Split(".").ToList();
+            List<string> sections = contractAssemblyName.Split(".").ToList();
             sections.RemoveAt(sections.Count - 1);
                 
             // get implementing assembly (ObligatorioDA2.Application)
-            var implementingAssemblyName = String.Join(".", sections);
-            var implementingAssembly = Assembly.Load(implementingAssemblyName);
+            string implementingAssemblyName = string.Join(".", sections);
+            Assembly implementingAssembly = Assembly.Load(implementingAssemblyName);
 
             // for each contract
             foreach (Type interf in interfaces)
             {
                 // get implementation of that contract
-                var type = implementingAssembly.GetTypes().First(impl => interf.IsAssignableFrom(impl));
+                Type type = implementingAssembly.GetTypes().First(impl => interf.IsAssignableFrom(impl));
                 // add service implementation to the ioc container
                 services.AddScoped(interf, type);
             }
