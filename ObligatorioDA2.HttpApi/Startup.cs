@@ -62,11 +62,11 @@ namespace ObligatorioDA2.HttpApi
             Assembly contractAssembly = Assembly.Load(contractAssemblyName);
             // get all interfaces from this assembly
             IEnumerable<Type> interfaces = contractAssembly.GetTypes().Where(t => t.IsInterface);
-            
+
             // remove '.Contracts' from name
             List<string> sections = contractAssemblyName.Split(".").ToList();
             sections.RemoveAt(sections.Count - 1);
-                
+
             // get implementing assembly (ObligatorioDA2.Application)
             string implementingAssemblyName = string.Join(".", sections);
             Assembly implementingAssembly = Assembly.Load(implementingAssemblyName);
