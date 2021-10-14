@@ -1,3 +1,11 @@
-<h1>Hello world!</h1>
-<button nz-button nzType="primary">Primary</button>
-<custom-button [callback]="onTestClick" type="primary">Test</custom-button>
+<h1>These are your grades!</h1>
+<!-- <custom-button [callback]="addGrade" type="primary">Add</custom-button> -->
+<button (click)="addGrade($event)">Add</button>
+<ul>
+    <li *ngFor="let g of grades;let index = index">
+        En {{ g.name }} te sacaste {{ g.score }} 
+        <div class="inline" *ngIf="g.score === 12">🏆</div>
+        <button (click)="remove(index)">-</button>
+    </li>
+</ul>
+
