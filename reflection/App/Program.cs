@@ -80,7 +80,7 @@ namespace App
             //object actorInstance = Activator.CreateInstance(actorType);
 
             // O también podemos crearlo pasandole parámetros
-            object actorInstance = Activator.CreateInstance(actorType, new object[] { "Juan", "T." });
+            object actorInstance = Activator.CreateInstance(actorType, "Juan", "T.");
 
             // Lo mostramos
             Console.WriteLine(actorInstance.ToString());
