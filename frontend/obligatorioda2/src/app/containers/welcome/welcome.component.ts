@@ -25,7 +25,6 @@ export class WelcomeComponent {
   name: string = "Juan"
 
   constructor() {
-    
   }
 
   onTestClick(e: Event) {

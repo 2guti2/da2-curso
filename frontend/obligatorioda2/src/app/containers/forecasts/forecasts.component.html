@@ -1,0 +1,14 @@
+<ng-template [ngIf]="forecasts.length" [ngIfElse]="loading">
+  <p>forecasts work!</p>
+
+  <ul>
+    <li *ngFor="let f of forecasts">
+      {{ f.temperatureC }} - {{ f.user }}
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #loading>
+  <nz-spin nzTip="Loading...">
+  </nz-spin>
+</ng-template>
