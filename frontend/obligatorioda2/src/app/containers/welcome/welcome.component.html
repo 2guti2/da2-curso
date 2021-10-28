@@ -1,11 +1,10 @@
 <h1>These are your grades!</h1>
 <button (click)="addGrade($event)">Add</button>
-<custom-button (onClick)="addGrade($event)" type="primary">Add2</custom-button>
+<custom-button (onClick)="addGrade($event)" type="default">Add2</custom-button>
 <ul>
     <li *ngFor="let g of grades;let index = index">
-        En {{ g.name }} te sacaste {{ g.score }}
+        En {{ g.name | uppercase | lowercase | uppercase }} te sacaste {{ g.score }}
         <div class="inline" *ngIf="g.score === 12">🏆</div>
         <button (click)="remove(index)">-</button>
     </li>
 </ul>
-

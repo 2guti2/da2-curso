@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   isCollapsed = false;
+
+  constructor() {
+    // localStorage.setItem('token', 'abcdef');
+  }
 }

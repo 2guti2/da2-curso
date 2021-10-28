@@ -10,11 +10,19 @@ import Forecast from "./forecast";
 export class ForecastsComponent implements OnInit {
   forecasts: Forecast[] = [];
 
-  constructor(private service: ForecastsService) {
+  constructor(private forecastsService: ForecastsService) {
   }
 
   async ngOnInit() {
-    this.forecasts = await this.service.getAll();
-    // this.forecasts = await this.service.getAllFromBackEnd();
+    // this.forecasts = await this.forecastsService.getAll();
+    await this.loadForecasts();
+  }
+
+  async reload() {
+    await this.loadForecasts();
+  }
+
+  private async loadForecasts() {
+    this.forecasts = await this.forecastsService.getAllFromBackEnd();
   }
 }

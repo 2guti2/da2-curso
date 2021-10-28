@@ -1,14 +1,22 @@
 <ng-template [ngIf]="forecasts.length" [ngIfElse]="loading">
   <p>forecasts work!</p>
+  <custom-button class="reload-btn" (onClick)="reload()" type="dashed"><i nz-icon nzType="reload" nzTheme="outline"></i></custom-button>
 
   <ul>
     <li *ngFor="let f of forecasts">
-      {{ f.temperatureC }} - {{ f.user }}
+      {{ f.temperatureC }} - {{ f.user }} - {{ f.summary }}
     </li>
   </ul>
+
+  <div class="container h">
+    <div class="child1 h">
+      <div class="child2 h"></div>
+    </div>
+    <div class="child2 h"></div>
+  </div>
+
 </ng-template>
 
 <ng-template #loading>
-  <nz-spin nzTip="Loading...">
-  </nz-spin>
+  <nz-spin nzTip="Loading..."></nz-spin>
 </ng-template>

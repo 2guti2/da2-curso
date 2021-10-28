@@ -1,3 +1,28 @@
 nz-spin {
   margin-top: 20vh;
 }
+
+.reload-btn {
+  position: absolute;
+  right: 80vw;
+}
+
+.h {
+  width: 100px;
+  height: 100px;
+  background: red;
+}
+
+.child1 {
+  padding-top: 10px;
+  .child2{
+    background: blue !important;
+  }
+}
+
+.container {
+  .child2 {
+    background: green;
+  }
+}
+
