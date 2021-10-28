@@ -47,6 +47,18 @@ namespace ObligatorioDA2.Application.Users
             _userRepo.Update(user);
         }
 
+        public IEnumerable<UserOutputDto> ReadAll()
+        {
+            IEnumerable<User>? users = _userRepo.ReadAll();
+            return users.Select(Mapper.ToDto);
+        }
+
+        public IEnumerable<UserOutputDto> ReadAllWithUsername(string username)
+        {
+            IEnumerable<User>? users = _userRepo.ReadAllWhere(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
+            return users.Select(Mapper.ToDto);
+        }
+
         private IEnumerable<Role> AvailableRoles()
         {
             if (!_roleRepo.ReadAll().Any())

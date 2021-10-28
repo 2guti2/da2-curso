@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Castle.Core.Internal;
 using Microsoft.AspNetCore.Mvc;
 using ObligatorioDA2.Application.Contracts.Users;
 using ObligatorioDA2.Application.Contracts.Users.Dtos;
@@ -22,6 +24,14 @@ namespace ObligatorioDA2.HttpApi.Controllers
         {
             UserOutputDto createdUser = _userService.Create(user);
             return Ok(createdUser);
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<UserOutputDto>> Get([FromQuery(Name = "username")] string username)
+        {
+            return Ok(username.IsNullOrEmpty()
+                ? _userService.ReadAll()
+                : _userService.ReadAllWithUsername(username));
         }
     }
 }

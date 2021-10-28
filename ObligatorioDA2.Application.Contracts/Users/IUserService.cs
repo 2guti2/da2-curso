@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ObligatorioDA2.Application.Contracts.Users.Dtos;
 
 namespace ObligatorioDA2.Application.Contracts.Users
@@ -8,5 +9,7 @@ namespace ObligatorioDA2.Application.Contracts.Users
         bool AuthenticationWorks(string username, string password);
         bool CanPerform(string username, string action);
         void Assign(int userId, string role);
+        IEnumerable<UserOutputDto> ReadAll();
+        IEnumerable<UserOutputDto> ReadAllWithUsername(string username);
     }
 }

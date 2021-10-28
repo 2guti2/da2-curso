@@ -1,4 +1,4 @@
-<ng-template [ngIf]="forecasts.length" [ngIfElse]="loading">
+<ng-template [ngIf]="forecasts" [ngIfElse]="loading">
   <p>forecasts work!</p>
   <custom-button class="reload-btn" (onClick)="reload()" type="dashed"><i nz-icon nzType="reload" nzTheme="outline"></i></custom-button>
 
