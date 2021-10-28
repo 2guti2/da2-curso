@@ -1,1 +1,32 @@
 <p>monitor works!</p>
+
+<form class="form-group" [formGroup]='form' nz-form>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzFor="email">Name</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="14" [nzErrorTip]="nameErrorTpl" [nzSuccessTip]="nameSuccessTpl">
+      <input nz-input type="text"
+             class="form-control"
+             formControlName="name"
+             placeholder="name" />
+      <ng-template #nameErrorTpl>
+        <ng-container *ngIf="hasError('name', 'required')">
+          Name is required.
+        </ng-container>
+        <ng-container *ngIf="hasError('name', 'minlength')">
+          Name must be at least 4 characters long.
+        </ng-container>
+        <ng-container *ngIf="hasError('name', 'forbiddenName')">
+          Name cannot be Robert.
+        </ng-container>
+        <ng-container *ngIf="hasError('name', 'duplicated')">
+          Name taken.
+        </ng-container>
+      </ng-template>
+      <ng-template #nameSuccessTpl>
+        <ng-container>
+          <p class="success">Name is available.</p>
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+</form>

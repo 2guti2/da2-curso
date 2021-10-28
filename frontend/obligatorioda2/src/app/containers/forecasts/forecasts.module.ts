@@ -4,7 +4,7 @@ import { ForecastsComponent } from './forecasts.component';
 import { ForecastsRoutingModule } from "./forecasts-routing.module";
 import { NzSpinModule } from "ng-zorro-antd/spin";
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import {ComponentsModule} from "../../components/components.module";
+import { ComponentsModule } from "../../components/components.module";
 
 @NgModule({
   declarations: [

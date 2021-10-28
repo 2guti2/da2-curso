@@ -8,7 +8,7 @@ import Forecast from "./forecast";
   styleUrls: ['./forecasts.component.scss']
 })
 export class ForecastsComponent implements OnInit {
-  forecasts: Forecast[] = [];
+  forecasts: Forecast[] | null = null;
 
   constructor(private forecastsService: ForecastsService) {
   }
