@@ -25,7 +25,7 @@ export class MonitorComponent {
     if (control.value.toLowerCase() !== 'robert') {
       return null;
     } else {
-      return { forbiddenName: true };
+      return { error: true, forbiddenName: true };
     }
   }
 
