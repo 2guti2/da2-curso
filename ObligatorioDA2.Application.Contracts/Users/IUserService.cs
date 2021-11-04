@@ -11,5 +11,6 @@ namespace ObligatorioDA2.Application.Contracts.Users
         void Assign(int userId, string role);
         IEnumerable<UserOutputDto> ReadAll();
         IEnumerable<UserOutputDto> ReadAllWithUsername(string username);
+        LoginOutputDto CreateSession(LoginInputDto input);
     }
 }

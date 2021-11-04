@@ -10,7 +10,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
 {
     [ApiController]
     [ExceptionFilter]
-    // [AuthenticationFilter]
+    [AuthenticationFilter]
     [Route("[controller]")]
     public class WeatherForecastController : CustomControllerBase
     {
@@ -27,7 +27,7 @@ namespace ObligatorioDA2.HttpApi.Controllers
         }
 
         [HttpGet]
-        // [AuthorizeAction("ReadForecasts")]
+        [AuthorizeAction("ReadForecasts")]
         public ActionResult<IEnumerable<WeatherForecastOutputDto>> ReadAll([FromQuery(Name = "summary")] string summary)
         {
             _logger?.LogInformation($"Username is: {Username}");

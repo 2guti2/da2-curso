@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {IdentityService} from "./identity.service";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   isCollapsed = false;
 
-  constructor() {
-    // localStorage.setItem('token', 'abcdef');
+  constructor(private service: IdentityService) {
+  }
+
+  isAdmin() {
+    return this.service.roles.includes("Admin");
+  }
+
+  logout() {
+    this.service.logout();
   }
 }

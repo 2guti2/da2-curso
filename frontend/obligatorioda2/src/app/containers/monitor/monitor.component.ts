@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
-import { Observable, Observer } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import {Component} from '@angular/core';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {Observable, Observer} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+
 @Component({
   selector: 'app-monitor',
   templateUrl: './monitor.component.html',
@@ -11,11 +12,22 @@ export class MonitorComponent {
   form: FormGroup;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
-    this.form = this.fb.group({
+    this.form = this.fb.group(
+      {
         name: [
           '', // default value
-          [Validators.required, Validators.minLength(4), this.forbiddenNameValidator], // sync validators
-          [this.userNameAsyncValidator, this.userNameAsyncBackEndValidator] //async validators
+          {
+            updateOn: 'blur',
+            validators: [
+              Validators.required,
+              Validators.minLength(4),
+              this.forbiddenNameValidator
+            ],
+            asyncValidators: [
+              this.userNameAsyncValidator,
+              this.userNameAsyncBackEndValidator
+            ]
+          }
         ],
       }
     );
@@ -25,7 +37,7 @@ export class MonitorComponent {
     if (control.value.toLowerCase() !== 'robert') {
       return null;
     } else {
-      return { error: true, forbiddenName: true };
+      return {error: true, forbiddenName: true};
     }
   }
 
@@ -34,7 +46,7 @@ export class MonitorComponent {
       setTimeout(() => {
         if (control.value === 'JasonWood') {
           // you have to return `{error: true}` to mark it as an error event
-          observer.next({ error: true, duplicated: true });
+          observer.next({error: true, duplicated: true});
         } else {
           observer.next(null);
         }
@@ -48,7 +60,7 @@ export class MonitorComponent {
         .toPromise()
         .then((result) => {
           if (result.length) {
-            observer.next({ error: true, duplicated: true });
+            observer.next({error: true, duplicated: true});
           } else {
             observer.next(null);
           }
@@ -59,5 +71,12 @@ export class MonitorComponent {
   hasError(prop: string, error: string) {
     const actualProp = this.form?.get(prop);
     return actualProp?.touched && actualProp?.hasError(error)
+  }
+
+  hasAnyErrors(prop: string) {
+    console.log(this.form?.get(prop)?.errors)
+    const stuff : any = this.form?.get(prop)?.errors;
+    const obj : any = stuff != null? stuff : {};
+    return Object.keys(obj).length;
   }
 }

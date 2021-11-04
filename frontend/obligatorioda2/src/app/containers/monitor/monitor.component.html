@@ -2,9 +2,11 @@
 
 <form class="form-group" [formGroup]='form' nz-form>
   <nz-form-item>
-    <nz-form-label [nzSpan]="6" nzFor="email">Name</nz-form-label>
+    <nz-form-label [nzSpan]="6" nzFor="name">Name</nz-form-label>
     <nz-form-control nzHasFeedback [nzSpan]="14" [nzErrorTip]="nameErrorTpl" [nzSuccessTip]="nameSuccessTpl">
-      <input nz-input type="text"
+      <input
+        [ngClass]="{'red' : hasAnyErrors('name')}"
+        nz-input type="text"
              class="form-control"
              formControlName="name"
              placeholder="name" />

@@ -14,7 +14,6 @@ export class ForecastsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    // this.forecasts = await this.forecastsService.getAll();
     await this.loadForecasts();
   }
 
@@ -24,5 +23,6 @@ export class ForecastsComponent implements OnInit {
 
   private async loadForecasts() {
     this.forecasts = await this.forecastsService.getAllFromBackEnd();
+    console.log(this.forecasts);
   }
 }

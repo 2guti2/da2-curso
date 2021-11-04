@@ -59,6 +59,34 @@ namespace ObligatorioDA2.Application.Users
             return users.Select(Mapper.ToDto);
         }
 
+        public LoginOutputDto CreateSession(LoginInputDto input)
+        {
+            User user = _userRepo.ReadAllWhere(u => u.Username == input.Username).FirstOrDefault();
+            IEnumerable<string>? roles = user.Roles.Select(r => r.GetType().ToString().Split(".").Last().Split("Role").First());
+            if (user.IsPasswordValid(input.Password))
+            {
+                return new LoginOutputDto
+                {
+                    Id = user.Id,
+                    Username = user.Username,
+                    Token = BuildToken(input),
+                    Roles = string.Join(',', roles)
+                };
+            }
+
+            throw new UnauthorizedAccessException();
+        }
+
+        private string BuildToken(LoginInputDto input)
+        {
+            return Base64Encode($"{input.Username}:{input.Password}");
+        }
+
+        private static string Base64Encode(string plainText) {
+            byte[]? plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return Convert.ToBase64String(plainTextBytes);
+        }
+
         private IEnumerable<Role> AvailableRoles()
         {
             if (!_roleRepo.ReadAll().Any())

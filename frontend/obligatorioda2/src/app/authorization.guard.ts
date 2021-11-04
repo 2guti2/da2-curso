@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import { Observable } from 'rxjs';
 import {IdentityService} from "./identity.service";
 
 @Injectable({
@@ -13,12 +12,10 @@ export class AuthorizationGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
-    console.log(route.routeConfig?.path);
-    if (this.identityService.role == "admin") {
+    if (this.identityService.isLoggedIn) {
       return true;
     }
-    this.router.navigate(['/monitor']);
+    this.router.navigate(['/login']);
     return false;
   }
-
 }

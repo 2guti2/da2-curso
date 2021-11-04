@@ -20,7 +20,7 @@
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/monitor">Monitor</a>
           </li>
-          <li nz-menu-item nzMatchRouter>
+          <li *ngIf="isAdmin()" nz-menu-item nzMatchRouter>
             <a routerLink="/forecasts">Forecasts</a>
           </li>
           <li nz-menu-item nzMatchRouter>
@@ -47,6 +47,12 @@
             <i class="trigger"
                nz-icon
                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></i>
+        </span>
+        <span style="float: right; margin-right: 20px;" (click)="logout()">
+            <i class="trigger"
+               nz-icon
+               nzType="logout"
             ></i>
         </span>
       </div>
